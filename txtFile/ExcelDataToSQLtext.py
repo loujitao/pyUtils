@@ -65,8 +65,8 @@ class ExcelData():
                 file.write(i + "\n")
 
 if __name__ == "__main__":
-    data_path = "D:/gitDoc/ts-fdw-doc\数仓设计和开发/1.SRC&ODS层/沃分期系统-ISIM/THIRD_ORDER_INFO-沃分期3.0订单表.xlsx"
-    sheetname = "THIRD_ORDER_INFO"
+    data_path = "D:/gitDoc/分期3.0订单表.xlsx"
+    sheetname = "ORDER_INFO"
     get_data = ExcelData(data_path, sheetname)
     #datas = get_data.excelToSQL(8, 83, 17, 18, 19)
     datas = get_data.excelToSQL2(8, 83, 9)

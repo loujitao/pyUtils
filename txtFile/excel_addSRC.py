@@ -10,9 +10,10 @@ class Excel_data():
         self.sheetname = sheetname
         # 打开指定工作簿
         self.wb = load_workbook(data_path)
-        sheet_names = self.wb.sheetnames
-        # 定位到指定的表单    workbook['表单名']
+        # 通过sheet名称定位到指定的表单    workbook['表单名']
         #self.sheet = self.wb[sheetname]
+        # 通过sheet索引定位到指定的表单   这里定位第二个sheet
+        sheet_names = self.wb.sheetnames
         self.sheet = self.wb[sheet_names[1]]
         # 最大有效行
         self.max_row = self.sheet.max_row
@@ -205,8 +206,8 @@ class Excel_data():
 
 
 
-path = "E:/xuqiu.xlsx"
-sheet_name = "THIRD_ORDER_INFO"
+path = "D:/ideaWork/pyUtils/txtFile/excel_data/xuqiu.xlsx"
+sheet_name = ""
 sheet = Excel_data(path, sheet_name)
 sheet.write_header()
 sheet.write_SRC()
