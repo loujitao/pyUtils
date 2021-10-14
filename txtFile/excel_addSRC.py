@@ -1,6 +1,11 @@
+#-*- coding: UTF-8 -*-
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 from copy import copy
+
+'''
+脚本功能： 根据运清部门提供业务表excel信息，自动补全SRC、ODS层设计部分信息
+'''
 
 class Excel_data():
     def __init__(self, data_path, sheetname):

@@ -1,4 +1,13 @@
 import re
+'''
+    "......
+    TM_STMP	STRING	COMMENT '时间戳',
+    ......"
+格式的文件，拼接成：
+    "TM_STMP,T_TMP,TP,TMP"
+'''
+
+
 filePath = 'D:\\testData\\python\\tsvData.txt'
 
 columnArr = []
