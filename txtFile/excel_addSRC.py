@@ -16,10 +16,10 @@ class Excel_data():
         # 打开指定工作簿
         self.wb = load_workbook(data_path)
         # 通过sheet名称定位到指定的表单    workbook['表单名']
-        #self.sheet = self.wb[sheetname]
+        self.sheet = self.wb[sheetname]
         # 通过sheet索引定位到指定的表单   这里定位第二个sheet
-        sheet_names = self.wb.sheetnames
-        self.sheet = self.wb[sheet_names[1]]
+        # sheet_names = self.wb.sheetnames
+        # self.sheet = self.wb[sheet_names[1]]
         # 最大有效行
         self.max_row = self.sheet.max_row
         self.start_row = 9
@@ -44,6 +44,12 @@ class Excel_data():
        补全表头
     '''
     def write_header(self):
+        self.sheet['B7'] = '原库字段名'
+        self.sheet['C7'] = '原库字段中文名'
+        self.sheet['D7'] = '原库字段含义详细说明'
+        self.sheet['E7'] = '原库字段类型'
+        self.sheet['F7'] = '原库主键'
+        self.sheet['G7'] = '原库是否为空必填'
         # SRC层表头信息
         self.sheet['J1'] = 'SRC表名（英文-中文）：'
         self.copy_style(self.sheet['E1'], self.sheet['J1'])
@@ -67,17 +73,17 @@ class Excel_data():
         self.copy_style(self.sheet['A6'], self.sheet['J6'])
         self.sheet.merge_cells('J6:O6')
         # SRC层列名表头
-        self.sheet['J7'] = '字段名'
+        self.sheet['J7'] = 'src字段名'
         self.copy_style(self.sheet['A7'], self.sheet['J7'])
-        self.sheet['K7'] = '字段中文名'
+        self.sheet['K7'] = 'src字段中文名'
         self.copy_style(self.sheet['A7'], self.sheet['K7'])
-        self.sheet['L7'] = '字段类型'
+        self.sheet['L7'] = 'src字段类型'
         self.copy_style(self.sheet['A7'], self.sheet['L7'])
-        self.sheet['M7'] = '主键'
+        self.sheet['M7'] = 'src主键'
         self.copy_style(self.sheet['A7'], self.sheet['M7'])
-        self.sheet['N7'] = '必填'
+        self.sheet['N7'] = 'src必填'
         self.copy_style(self.sheet['A7'], self.sheet['N7'])
-        self.sheet['O7'] = '脱敏加密方式'
+        self.sheet['O7'] = 'src脱敏加密方式'
         self.copy_style(self.sheet['A7'], self.sheet['O7'])
         # SRC层说明行
         self.sheet['J8'] = '与源表尽量保持一致\n如源表缺失须补充'
@@ -98,46 +104,48 @@ class Excel_data():
         self.sheet['P1'] = 'ODS表名（英文-中文）：'
         self.copy_style(self.sheet['A1'], self.sheet['P1'])
         self.sheet.merge_cells('P1:R1')
-        self.sheet.merge_cells('S1:W1')
+        self.sheet.merge_cells('S1:X1')
         self.sheet['P2'] = '设计人员'
         self.copy_style(self.sheet['A1'], self.sheet['P2'])
         self.sheet.merge_cells('P2:R2')
         self.sheet['S2'] = '娄继涛'
-        self.sheet.merge_cells('S2:W2')
+        self.sheet.merge_cells('S2:X2')
         self.sheet['P3'] = '版本-日期：'
         self.copy_style(self.sheet['A1'], self.sheet['P3'])
         self.sheet.merge_cells('P3:R3')
-        self.sheet.merge_cells('S3:W3')
+        self.sheet.merge_cells('S3:X3')
         self.sheet['P4'] = '分区方式:'
         self.copy_style(self.sheet['A1'], self.sheet['P4'])
         self.sheet.merge_cells('P4:R4')
         self.sheet['S4'] = ' dt=YYYY-MM-DD， ht=HH , mt=mm'
-        self.sheet.merge_cells('S4:W4')
+        self.sheet.merge_cells('S4:X4')
         self.sheet['P5'] = '存储组件：'
         self.copy_style(self.sheet['A1'], self.sheet['P5'])
         self.sheet.merge_cells('P5:R5')
         self.sheet['S5'] = 'HDFS  PARQUET'
-        self.sheet.merge_cells('S5:W5')
+        self.sheet.merge_cells('S5:X5')
         self.sheet['P6'] = 'ODS层字段明细'
         self.copy_style(self.sheet['A6'], self.sheet['P6'])
-        self.sheet.merge_cells('P6:W6')
+        self.sheet.merge_cells('P6:X6')
         # ODS层列名表头
-        self.sheet['P7'] = '入仓'
+        self.sheet['P7'] = '是否入仓'
         self.copy_style(self.sheet['A7'], self.sheet['P7'])
         self.sheet['Q7'] = '设计理由'
         self.copy_style(self.sheet['A7'], self.sheet['Q7'])
-        self.sheet['R7'] = '字段名'
+        self.sheet['R7'] = 'ods字段名'
         self.copy_style(self.sheet['A7'], self.sheet['R7'])
-        self.sheet['S7'] = '字段中文名'
+        self.sheet['S7'] = 'ods字段中文名'
         self.copy_style(self.sheet['A7'], self.sheet['S7'])
-        self.sheet['T7'] = '字段类型'
+        self.sheet['T7'] = 'ods字段类型'
         self.copy_style(self.sheet['A7'], self.sheet['T7'])
-        self.sheet['U7'] = '主键'
+        self.sheet['U7'] = 'ods主键'
         self.copy_style(self.sheet['A7'], self.sheet['U7'])
-        self.sheet['V7'] = '必填'
+        self.sheet['V7'] = 'ods必填'
         self.copy_style(self.sheet['A7'], self.sheet['V7'])
-        self.sheet['W7'] = '数据清洗规则'
+        self.sheet['W7'] = 'ods数据清洗规则'
         self.copy_style(self.sheet['A7'], self.sheet['W7'])
+        self.sheet['X7'] = 'ods默认值'
+        self.copy_style(self.sheet['A7'], self.sheet['X7'])
         # ODS层说明行
         self.sheet['P8'] = '是/否'
         self.copy_style(self.sheet['F8'], self.sheet['P8'])
@@ -153,6 +161,8 @@ class Excel_data():
         self.copy_style(self.sheet['F8'], self.sheet['V8'])
         self.sheet['W8'] = '一般包含转换数据格式和统一维度'
         self.copy_style(self.sheet['F8'], self.sheet['W8'])
+        self.sheet['X8'] = '‘’、‘未知’'
+        self.copy_style(self.sheet['F8'], self.sheet['X8'])
 
     '''
       补全SRC层的内容  
@@ -176,6 +186,17 @@ class Excel_data():
             self.sheet.cell(i, 15).value = self.sheet.cell(i, 9).value
             self.copy_style(self.sheet.cell(i, 9), self.sheet.cell(i, 15))
             i = i + 1
+        self.sheet.cell(i, 10).value = 'dw_entry_time'
+        self.sheet.cell(i, 11).value = '入仓时间'
+        self.sheet.cell(i, 12).value = 'string'
+        self.sheet.cell(i, 13).value = '否'
+        self.sheet.cell(i, 14).value = '否'
+        i = i + 1
+        self.sheet.cell(i, 10).value = 'business_db_operator'
+        self.sheet.cell(i, 11).value = '数据操作标识'
+        self.sheet.cell(i, 12).value = 'string'
+        self.sheet.cell(i, 13).value = '否'
+        self.sheet.cell(i, 14).value = '否'
 
     '''
       补全ODS层的内容  
@@ -201,7 +222,28 @@ class Excel_data():
             self.sheet.cell(i, 22).value = self.sheet.cell(i, 7).value
             self.copy_style(self.sheet.cell(i, 2), self.sheet.cell(i, 22))
             self.copy_style(self.sheet.cell(i, 2), self.sheet.cell(i, 23))
+            self.sheet.cell(i, 23).value = 'R-1'
+            self.sheet.cell(i, 24).value = '‘’'
             i = i + 1
+        self.sheet.cell(i, 16).value = '是'
+        self.sheet.cell(i, 17).value = '数据入仓添加字段'
+        self.sheet.cell(i, 18).value = 'dw_entry_time'
+        self.sheet.cell(i, 19).value = '入仓时间'
+        self.sheet.cell(i, 20).value = 'string'
+        self.sheet.cell(i, 21).value = '否'
+        self.sheet.cell(i, 22).value = '否'
+        self.sheet.cell(i, 23).value = 'R-1'
+        self.sheet.cell(i, 24).value = '‘’'
+        i = i + 1
+        self.sheet.cell(i, 16).value = '是'
+        self.sheet.cell(i, 17).value = '数据入仓添加字段'
+        self.sheet.cell(i, 18).value = 'business_db_operator'
+        self.sheet.cell(i, 19).value = '数据操作标识'
+        self.sheet.cell(i, 20).value = 'string'
+        self.sheet.cell(i, 21).value = '否'
+        self.sheet.cell(i, 22).value = '否'
+        self.sheet.cell(i, 23).value = 'R-1'
+        self.sheet.cell(i, 24).value = '‘’'
 
     '''
        保存excel文档，最后执行一次
@@ -210,11 +252,14 @@ class Excel_data():
         self.wb.save(self.data_path)
 
 
-
-path = "D:/ideaWork/pyUtils/txtFile/excel_data/xuqiu.xlsx"
-sheet_name = ""
-sheet = Excel_data(path, sheet_name)
-sheet.write_header()
-sheet.write_SRC()
-sheet.write_ODS()
-sheet.save_excel()
+if __name__ == '__main__':
+    dir_path = r"D:\gitDoc\ts-fdw-doc\数仓设计和开发\1.SRC&ODS层\联通代理商融资服务（沃易融）系统 (CUWYR)/"
+    file_name = r"CREDIT_ORDER-佣金贷授信表.xlsx"
+    path = dir_path + file_name
+    print("path: " + path)
+    sheet_name = "CREDIT_ORDER"
+    sheet = Excel_data(path, sheet_name)
+    sheet.write_header()
+    sheet.write_SRC()
+    sheet.write_ODS()
+    sheet.save_excel()
