@@ -17,7 +17,7 @@ def copy_to_batch_dir(file_path, root_dir):
                 shutil.copy(file_path, file_dir)
                 #如果子文件夹还需要拷贝，解开下列注释，递归调用
                 #copy_to_batch_dir(file_path, file_dir)
-
+#####cc
 
 '''
 功能：将单个文件，复制到单个目录下， 一份
